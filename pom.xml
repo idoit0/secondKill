@@ -12,10 +12,10 @@
 
 
   <groupId>com.imooc</groupId>
-  <artifactId>miaosha</artifactId>
+  <artifactId>secondKill</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>miaosha</name>
+  <name>secondKill</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

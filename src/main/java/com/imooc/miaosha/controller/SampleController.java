@@ -2,13 +2,16 @@ package com.imooc.miaosha.controller;
 
 import com.imooc.common.CodeMsg;
 import com.imooc.common.Result;
+import com.imooc.miaosha.domain.User;
 import com.imooc.miaosha.redis.RedisService;
+import com.imooc.miaosha.redis.UserKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,16 +46,21 @@ public class SampleController {
     @RequestMapping("testRedisGet")
     @ResponseBody
     public Result testRedisGet(){
-        String userName = redisService.get("userName",String.class);
-        return Result.success(userName);
+        User userRet = redisService.get(UserKey.getById,"1",User.class);
+        return Result.success(userRet);
     }
 
     @RequestMapping("testRedis")
     @ResponseBody
     public Result testRedis(){
-        redisService.set("userName","张浩纯");
-        String userName = redisService.get("userName",String.class);
-        return Result.success(userName);
+        User user = new User();
+        user.setAccount("zhc");
+        user.setBirthday(new Date());
+        user.setId(1);
+        user.setName("张浩纯");
+        redisService.set(UserKey.getById,"1",user);
+        User userRet = redisService.get(UserKey.getById,"1",User.class);
+        return Result.success(userRet);
     }
 
 }
