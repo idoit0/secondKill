@@ -10,4 +10,6 @@ public interface UserDao {
     @Select("select * from sys_user where id = #{id}")
     public User getUserById(@Param("id") int id);
 
+    @Select("select * from sys_user where account = #{account}")
+    public User getUserByAccount(@Param("account") String account);
 }

@@ -21,4 +21,13 @@ public class CodeMsg {
     public String getMsg() {
         return msg;
     }
+    /**
+     * 登录模块
+     */
+    //失败
+    public static CodeMsg ACCOUNT_EMPTY = new CodeMsg(500001,"账号不存在");
+    public static CodeMsg PASSWORD_EROOR = new CodeMsg(500002,"密码错误");
+    //成功
+    public static CodeMsg LOGIN_SUCCESS = new CodeMsg(500100,"登录成功");
+
 }
