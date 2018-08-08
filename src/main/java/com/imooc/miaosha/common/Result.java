@@ -1,4 +1,4 @@
-package com.imooc.common;
+package com.imooc.miaosha.common;
 
 public class Result<T> {
     private int code;

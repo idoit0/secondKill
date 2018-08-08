@@ -1,7 +1,7 @@
 package com.imooc.miaosha.controller;
 
-import com.imooc.common.CodeMsg;
-import com.imooc.common.Result;
+import com.imooc.miaosha.common.CodeMsg;
+import com.imooc.miaosha.common.Result;
 import com.imooc.miaosha.domain.User;
 import com.imooc.miaosha.service.UserService;
 import com.imooc.miaosha.utils.MD5Util;
@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/login")
 public class LoginController {
     @Autowired
     UserService userService;
     @RequestMapping("checkMsg")
-    public Result checkMsg(@RequestBody User userParam){
+    public Result checkMsg(@Valid @RequestBody User userParam){
 
         //相关参数校验省略
         User user = userService.getUserByAccount(userParam.getAccount());

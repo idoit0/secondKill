@@ -1,7 +1,7 @@
 package com.imooc.miaosha.controller;
 
-import com.imooc.common.CodeMsg;
-import com.imooc.common.Result;
+import com.imooc.miaosha.common.CodeMsg;
+import com.imooc.miaosha.common.Result;
 import com.imooc.miaosha.domain.User;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.redis.UserKey;

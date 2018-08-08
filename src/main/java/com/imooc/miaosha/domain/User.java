@@ -1,13 +1,31 @@
 package com.imooc.miaosha.domain;
 
+import com.imooc.miaosha.common.validator.IsMobile;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class User {
     private int id;
+    @NotNull
     private String account;
+    @NotNull
+    private String password;
+    @NotNull
+    @IsMobile
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     private String name;
     private Date birthday;
-    private String password;
+
 
     public String getPassword() {
         return password;
