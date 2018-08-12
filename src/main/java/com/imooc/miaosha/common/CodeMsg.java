@@ -31,7 +31,9 @@ public class CodeMsg {
     //失败
     public static CodeMsg ACCOUNT_EMPTY = new CodeMsg(500001,"账号不存在");
     public static CodeMsg PASSWORD_EROOR = new CodeMsg(500002,"密码错误");
+    public static CodeMsg PARAMETER_ERROR = new CodeMsg(500003,"参数有误");
     public static CodeMsg SERVICE_EROOR = new CodeMsg(500500,"服务器异常");
+
     //成功
     public static CodeMsg LOGIN_SUCCESS = new CodeMsg(500100,"登录成功");
 

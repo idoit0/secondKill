@@ -2,7 +2,6 @@ package com.imooc.miaosha.common.exception;
 
 import com.imooc.miaosha.common.CodeMsg;
 import com.imooc.miaosha.common.Result;
-import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
