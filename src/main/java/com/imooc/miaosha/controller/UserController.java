@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 
 @Controller
 @RequestMapping("/user")
@@ -37,17 +40,23 @@ public class UserController {
 
     @RequestMapping("checkToken")
     @ResponseBody
-    public Result checkToken(@CookieValue(value = COOKIE_NAME_TOKEN,required = false) String cookieToken, @RequestParam(value=COOKIE_NAME_TOKEN,required = false) String paramToken){
+    public Result checkToken(HttpServletResponse response, @CookieValue(value = COOKIE_NAME_TOKEN,required = false) String cookieToken, @RequestParam(value=COOKIE_NAME_TOKEN,required = false) String paramToken){
         if(StringUtils.isBlank(cookieToken) && StringUtils.isBlank(paramToken)){
             return Result.error( CodeMsg.PARAMETER_ERROR);
         }
         String token = StringUtils.isBlank(paramToken)?cookieToken:paramToken;
         MiaoShaUser miaoShaUser = redisService.get(MiaoShaUserKey.token,token,MiaoShaUser.class);
+
         if(miaoShaUser != null){
+            // 延长有效期，重新设置cookie
+            Cookie cookie = new Cookie(COOKIE_NAME_TOKEN,token);
+            cookie.setMaxAge(MiaoShaUserKey.token.expireSeconds());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
             return Result.success(CodeMsg.LOGIN_SUCCESS);
         }
         return Result.error(CodeMsg.PARAMETER_ERROR);
-
     }
 
 }
